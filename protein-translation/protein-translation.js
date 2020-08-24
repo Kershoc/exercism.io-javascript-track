@@ -1,12 +1,12 @@
 export const translate = (input = '') => {
   let proteins = [];
   for (let i = 0; i < input.length; i += 3) {
-    let chunk = input.substr(i, 3);
+    let codon = input.substr(i, 3);
     
-    if (!codonRNA.hasOwnProperty(chunk)) throw new Error("Invalid codon");
-    if (codonRNA[chunk] == "STOP") break;
+    if (!codonRNA.hasOwnProperty(codon)) throw new Error("Invalid codon");
+    if (codonRNA[codon] == "STOP") break;
     
-    proteins.push(codonRNA[chunk]);
+    proteins.push(codonRNA[codon]);
   }
   return proteins;
 };
