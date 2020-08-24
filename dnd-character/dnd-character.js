@@ -9,7 +9,7 @@ export class Character {
     let min = 1; // inclusive
     let max = 7; // exclusive
     let rolls = [...new Array(4)].map(() => Math.floor(Math.random() * (max - min) + min))
-    rolls.sort().shift();
+    rolls.sort((a, b) => a - b).shift();
     return rolls.reduce((sum, x) => sum + x);
   }
 
