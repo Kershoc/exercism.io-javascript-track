@@ -8,7 +8,5 @@ export const compute = (lstrand, rstrand) => {
   if (lstrand.length !== rstrand.length) {
     throw new Error("left and right strands must be of equal length");
   }
-  let count = 0;
-  [...lstrand].map((c, i) => { if (c !== rstrand[i]) count++ });
-  return count;
+  return [...lstrand].reduce( (count, c, i) => (c !== rstrand[i])?++count:count , 0);
 };
