@@ -6,5 +6,7 @@ const DNA2RNA = {
 }
 
 export const toRna = (input) => {
-  return [...input].map((c) => (DNA2RNA[c]) ? DNA2RNA[c] : c).join('');
+  return [...input].map(
+    (nucleotide) => (DNA2RNA[nucleotide]) ? DNA2RNA[nucleotide] : nucleotide
+  ).join('');
 };
