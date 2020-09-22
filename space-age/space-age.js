@@ -1,6 +1,6 @@
-const earthYear = 31557600;
+const EARTH_YEAR = 315576e2;
 
-const solarSystem = {
+const SOLAR_SYSTEM = {
 	mercury: 0.2408467,
 	venus:   0.61519726,
 	earth:   1,
@@ -12,6 +12,8 @@ const solarSystem = {
 	pluto:   247.94,
 }
 
+const roundToHundredths = (num) => Math.round( ( num + Number.EPSILON ) * 100 ) / 100
+
 export const age = (planet, seconds) => {
-  return +(seconds / earthYear / solarSystem[planet]).toFixed(2);
+  return roundToHundredths(seconds / EARTH_YEAR / SOLAR_SYSTEM[planet]);
 };
