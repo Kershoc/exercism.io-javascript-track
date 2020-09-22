@@ -12,7 +12,7 @@ const SOLAR_SYSTEM = {
 	pluto:   247.94,
 }
 
-const roundToHundredths = (num) => Math.round( ( num + Number.EPSILON ) * 100 ) / 100
+const roundToHundredths = (number) => Math.round( ( number + Number.EPSILON ) * 100 ) / 100
 
 export const age = (planet, seconds) => {
   return roundToHundredths(seconds / EARTH_YEAR / SOLAR_SYSTEM[planet]);
