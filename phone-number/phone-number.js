@@ -1,6 +1,6 @@
 export const clean = (input) => {
-  if (input.match(/\p{L}/ug)) throw new Error('Letters not permitted');
-  if (input.match(/[^\p{Pd}\p{Ps}\p{Pe}\.\s\+0-9]/ug)) throw new Error('Punctuations not permitted');
+  if (/\p{L}/ug.test(input)) throw new Error('Letters not permitted');
+  if (/[^\p{Pd}\p{Ps}\p{Pe}\.\s\+0-9]/ug.test(input)) throw new Error('Punctuations not permitted');
   let cleaned = input.replace(/[^0-9]+/g,'');
 
   switch (cleaned.length) {
