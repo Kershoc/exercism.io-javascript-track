@@ -1,14 +1,13 @@
 
 export const rows = (rowCount) => {
-  let triangle = [];
-  for (let line = 1; line <= rowCount; line++) {
-    let row = [];
+  return [...new Array(rowCount)].map((_, idx) => {
+    const line = idx + 1;
     let Cline = 1; //represents C(line, i)
-    for (let i = 1; i <= line; i++) {
-      row.push(Cline);
+    return [...new Array(line)].map((_, rIdx) => {
+      const current = Cline;
+      const i = rIdx + 1;
       Cline = Cline * (line - i) / i;
-    }
-    triangle.push(row);
-  }
-  return triangle;
+      return current;
+    });
+  });
 };
