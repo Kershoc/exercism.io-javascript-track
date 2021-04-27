@@ -12,37 +12,19 @@ export class List {
   }
 
   concat(listList) {
-    let newList = new List(this.values);
-    for (const list of listList.values) {
-      newList = newList.append(list);
-    }
-    return newList;
+    return listList.foldl((newList, list) => newList.append(list), new List(this.values));
   }
 
   filter(filter) {
-    let newList = new List();
-    for (const item of this.values) {
-      if (filter(item)) {
-        newList = newList.append(new List([item]));
-      }
-    }
-    return newList;    
+    return this.foldl((newList, item) => filter(item) ? newList.append(new List([item])) : newList, new List());
   }
 
   map(map) {
-    let newList = new List();
-    for (const item of this.values) {
-      newList = newList.append(new List([map(item)]));
-    }
-    return newList;    
+    return this.foldl((newList, item) => newList.append(new List([map(item)])), new List());
   }
 
   length() {
-    let count = 0;
-    for (const item of this.values) {
-      count++;
-    }
-    return count;
+    return this.foldl((count) => ++count, 0);
   }
 
   foldl(reducer, accumulator) {
