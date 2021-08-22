@@ -7,12 +7,12 @@ export class Cipher {
     this._key = key ?? this.randomKey;
   }
 
-  encode(input, encode = true) {
-    return [...input].reduce((out, c, i) => out += this.translate(c, i, encode), '');
+  encode(input) {
+    return [...input].reduce((out, c, i) => out += this.translate(c, this.distance(i)), '');
   }
 
   decode(input) {
-    return this.encode(input, false);
+    return [...input].reduce((out, c, i) => out += this.translate(c, 0-this.distance(i)), '');
   }
 
   distance(keyidx) {
@@ -25,11 +25,8 @@ export class Cipher {
     return charCode;
   }
 
-  translate(char, keyidx, encode = true) {
-    let charCode = (encode)
-      ? char.charCodeAt(0) + this.distance(keyidx)
-      : char.charCodeAt(0) - this.distance(keyidx);
-    return String.fromCharCode(this.wrap(charCode));
+  translate(char, distance) {
+    return String.fromCharCode(this.wrap(char.charCodeAt(0) + distance));
   }
 
   randomChar() {
