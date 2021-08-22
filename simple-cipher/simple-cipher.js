@@ -8,7 +8,6 @@ export class Cipher {
   }
 
   encode(input, encode = true) {
-    while (this._key.length < input.length) this._key += this._key;
     return [...input].reduce((out, c, i) => out += this.translate(c, i, encode), '');
   }
 
@@ -17,7 +16,7 @@ export class Cipher {
   }
 
   distance(keyidx) {
-    return this._key.charCodeAt(keyidx) - LOWERBOUND;
+    return this._key.charCodeAt(keyidx%this._key.length) - LOWERBOUND;
   }
 
   wrap(charCode) {
