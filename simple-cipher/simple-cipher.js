@@ -20,11 +20,9 @@ export class Cipher {
   }
 
   wrap(charCode) {
-    return (charCode > UPPERBOUND)
-      ? charCode - ALPHABET_LENGTH
-      : (charCode < LOWERBOUND)
-        ? charCode + ALPHABET_LENGTH 
-        : charCode;
+    if (charCode > UPPERBOUND) return charCode - ALPHABET_LENGTH
+    if (charCode < LOWERBOUND) return charCode + ALPHABET_LENGTH 
+    return charCode;
   }
 
   translate(char, keyidx, encode = true) {
