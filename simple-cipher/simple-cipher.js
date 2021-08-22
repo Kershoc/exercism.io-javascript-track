@@ -32,8 +32,12 @@ export class Cipher {
     return String.fromCharCode(this.wrap(charCode));
   }
 
+  randomChar() {
+    return String.fromCharCode(LOWERBOUND + Math.floor(Math.random() * ALPHABET_LENGTH));
+  }
+
   get randomKey() {
-    return [...Array(100)].reduce((out) => out += String.fromCharCode(LOWERBOUND + Math.floor(Math.random() * ALPHABET_LENGTH)));
+    return [...Array(100)].reduce((out) => out += this.randomChar());
   }
 
   get key() {
