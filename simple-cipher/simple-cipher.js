@@ -1,6 +1,8 @@
 const LOWERBOUND = 'a'.charCodeAt(0);
 const UPPERBOUND = 'z'.charCodeAt(0);
 const ALPHABET_LENGTH = 26;
+const FORWARD = 1;
+const BACKWARD = -1;
 
 export class Cipher {
   constructor(key) {
@@ -8,11 +10,11 @@ export class Cipher {
   }
 
   encode(input) {
-    return [...input].reduce((out, c, i) => out += this.translate(c, this.distance(i)), '');
+    return this.translate(input, FORWARD);
   }
 
   decode(input) {
-    return [...input].reduce((out, c, i) => out += this.translate(c, 0-this.distance(i)), '');
+    return this.translate(input, BACKWARD);
   }
 
   distance(keyidx) {
@@ -25,7 +27,11 @@ export class Cipher {
     return charCode;
   }
 
-  translate(char, distance) {
+  translate(input, direction) {
+    return [...input].reduce((out, c, i) => out += this.translateChar(c, this.distance(i)*direction), '');
+  }
+
+  translateChar(char, distance) {
     return String.fromCharCode(this.wrap(char.charCodeAt(0) + distance));
   }
 
